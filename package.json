@@ -1,0 +1,34 @@
+{
+  "name": "mongoose_skeleton",
+  "version": "1.0.0",
+  "description": "Fitness tracker",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeders/seed.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+
+    "express": "^4.17.1",
+    "dotenv": "^10.0.0",
+    "morgan": "^1.10.0",
+    "path": "^0.12.7",
+    "mongoose": "^5.13.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aislynnrose/FitnessTracker"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Aislynnrose/FitnessTracker/issues"
+  },
+  "homepage": "https://github.com/Aislynnrose/FitnessTracker",
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
