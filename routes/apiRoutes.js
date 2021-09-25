@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const Workout = require('../models/Workout.js');
+const Workouts = require('../models/Workout');
 
 // Get duration for workout range
-router.get('/api/workouts/range', async (req, res) => {
+router.get('/api/workouts', async (req, res) => {
   try {
-      const workoutDuration = await Workout.aggregate([
+      const workoutDuration = await Workouts.aggregate([
           {
               $addFields: {
                   workoutDuration: {$sum: "$exercises.duration"}
               }
           },
-      ]).sort({ date: -1 }).limit(7);
+      ]).then((data) => res.json(data));
       console.log(workoutDuration);
       res.status(200).json(workoutDuration);
   } catch (e) {
@@ -19,17 +19,11 @@ router.get('/api/workouts/range', async (req, res) => {
   }
 });
 
+//.sort({ date: -1 }).limit(7);
 
 //Create new workout
-router.post('/api/workouts', async (req, res) => {
-  try {
-      const newWorkout = await Workout.create(req.body);
-      newWorkout.save();
-
-      res.status(200).json(newWorkout);
-  } catch (e) {
-      res.status(400).json(e);
-  }
+router.post('/api/workouts',  (req, res) => {
+ Workouts.create({}).then((data)=>console.log(data)).catch(err=>res.json(err))
 });
 
 //Update workout by id
